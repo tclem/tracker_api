@@ -46,11 +46,11 @@ module TrackerApi
       end
 
       def update(params = {})
-        Endpoints::Story.new(client).update(project_id, story_id, params)
+        Endpoints::Story.new(client).update(project_id, id, params)
       end
 
       def delete
-        Endpoints::Story.new(client).delete(project_id, story_id)
+        Endpoints::Story.new(client).delete(project_id, id)
       end
     end
   end
