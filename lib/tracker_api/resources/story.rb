@@ -44,6 +44,14 @@ module TrackerApi
           @tasks = Endpoints::Tasks.new(client).get(project_id, id, params)
         end
       end
+
+      def update(params = {})
+        Endpoints::Story.new(client).update(project_id, story_id, params)
+      end
+
+      def delete
+        Endpoints::Story.new(client).delete(project_id, story_id)
+      end
     end
   end
 end
