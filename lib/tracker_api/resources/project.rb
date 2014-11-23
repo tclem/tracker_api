@@ -104,6 +104,10 @@ module TrackerApi
       def integration(iteration_id)
         Endpoints::Integration.new(client).get(id, iteration_id)
       end
+
+      def create_integration(params)
+        Endpoints::Integrations.new(client).create(id, params)
+      end
     end
   end
 end
