@@ -96,6 +96,14 @@ module TrackerApi
       def create_story(params)
         Endpoints::Story.new(client).create(id, params)
       end
+
+      def integrations(params = {})
+        Endpoints::Integrations.new(client).get(id)
+      end
+
+      def integrations(iteration_id, params = {})
+        Endpoints::Integration.new(client).get(id, iteration_id)
+      end
     end
   end
 end
