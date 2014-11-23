@@ -8,7 +8,7 @@ module TrackerApi
       end
 
       def get(project_id)
-        data = client.paginate("/projects/#{project_id}/integrations", params: params)
+        data = client.paginate("/projects/#{project_id}/integrations")
         raise TrackerApi::Errors::UnexpectedData, 'Array of iterations expected' unless data.is_a? Array
 
         data.map do |integration|
