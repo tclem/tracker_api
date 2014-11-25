@@ -32,6 +32,8 @@ module TrackerApi
     autoload :Stories, 'tracker_api/endpoints/stories'
     autoload :Story, 'tracker_api/endpoints/story'
     autoload :Tasks, 'tracker_api/endpoints/tasks'
+    autoload :Webhook, 'tracker_api/endpoints/webhook'
+    autoload :Webhooks, 'tracker_api/endpoints/webhooks'
   end
 
   module Resources
@@ -48,5 +50,6 @@ module TrackerApi
     autoload :Story, 'tracker_api/resources/story'
     autoload :Task, 'tracker_api/resources/task'
     autoload :TimeZone, 'tracker_api/resources/time_zone'
+    autoload :Webhook, 'tracker_api/resources/webhook'
   end
 end
