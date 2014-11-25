@@ -108,6 +108,18 @@ module TrackerApi
       def create_integration(params)
         Endpoints::Integrations.new(client).create(id, params)
       end
+
+      def webhooks
+        Endpoints::Webhooks.new(client).get(id)
+      end
+
+      def webhook(webhook_id)
+        Endpoints::Webhook.new(client).get(id, webhook_id)
+      end
+
+      def create_webhook(params)
+        Endpoints::Webhooks.new(client).create(id, params)
+      end
     end
   end
 end
