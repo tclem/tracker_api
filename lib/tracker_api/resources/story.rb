@@ -90,7 +90,7 @@ module TrackerApi
           @tasks = Endpoints::Tasks.new(client).get(project_id, id, params)
         end
       end
-      
+
       # Provides a list of all the owners of the story.
       #
       # @param [Hash] params
