@@ -91,17 +91,20 @@ module TrackerApi
         end
       end
 
-      # Provides a list of all the owners of the story.
+      # TODO: This is not working with requests to pull back associations with
+      # fields
       #
-      # @param [Hash] params
-      # @return [Array[Person]]
-      def owners(params = {})
-        if params.blank? && @owners.any?
-          @owners
-        else
-          @owners = Endpoints::StoryOwners.new(client).get(project_id, id, params)
-        end
-      end
+      # # Provides a list of all the owners of the story.
+      # #
+      # # @param [Hash] params
+      # # @return [Array[Person]]
+      # def owners(params = {})
+      #   if params.blank? && @owners.any?
+      #     @owners
+      #   else
+      #     @owners = Endpoints::StoryOwners.new(client).get(project_id, id, params)
+      #   end
+      # end
 
       # @param [Hash] params attributes to create the task with
       # @return [Task] newly created Task
