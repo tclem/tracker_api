@@ -1,12 +1,9 @@
 module TrackerApi
   module Resources
     class Person
-      include Virtus.model
-
-      attribute :client
+      include Shared::HasId
 
       attribute :kind, String
-      attribute :id, Integer
       attribute :name, String
       attribute :email, String
       attribute :initials, String

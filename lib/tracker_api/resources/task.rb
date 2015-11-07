@@ -1,11 +1,8 @@
 module TrackerApi
   module Resources
     class Task
-      include Virtus.model
+      include Shared::HasId
 
-      attribute :client
-
-      attribute :id, Integer
       attribute :story_id, Integer
       attribute :description, String
       attribute :complete, Boolean

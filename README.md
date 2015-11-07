@@ -35,16 +35,26 @@ $ gem install tracker_api
 ```ruby
 client = TrackerApi::Client.new(token: 'my-api-token')                    # Create API client
 
-user_email = client.me.email                                              # Get authenticated user's email
+client.me.email                                                           # Get email for the authenticated person
+client.activity                                                           # Get a list of all the activity performed the authenticated person
+client.notifications                                                      # Get notifications for the authenticated person
 
 projects = client.projects                                                # Get all projects
 project  = client.project(123456)                                         # Find project with given ID
+project.activity                                                          # Get a list of all the activity performed on this project
 
 project.stories                                                           # Get all stories for a project
 project.stories(with_state: :unscheduled, limit: 10)                      # Get 10 unscheduled stories for a project
 project.stories(filter: 'requester:OWK label:"jedi stuff"')               # Get all stories that match the given filters
-project.story(847762630)                                                  # Find a story with the given ID
 project.create_story(name: 'Destroy death star')                          # Create a story with the name 'Destroy death star'
+
+story = project.story(847762630)                                          # Find a story with the given ID
+story.activity                                                            # Get a list of all the activity performed on this story
+
+story.name = 'Save the Ewoks'                                             # Update a single story attribute
+story.attributes = { name: 'Save the Ewoks', description: '...' }         # Update multiple story attributes
+story.labels << TrackerApi::Resources::Label.new(name: 'Endor')           # Add a new label to an existing story
+story.save                                                                # Save changes made to a story
 
 epics = project.epics                                                     # Get all epics for a project
 epic  = epics.first
@@ -61,6 +71,8 @@ client = TrackerApi::Client.new(token: 'my-api-token')                    # Crea
 client.project(project_id, fields: ':default,labels(name)')               # Eagerly get labels with a project
 client.project(project_id, fields: ':default,epics')                      # Eagerly get epics with a project
 client.project(project_id).stories(fields: ':default,tasks')              # Eagerly get stories with tasks
+client.project.stories(fields: ':default,comments(:default,person)')      # Eagerly get stories with comments and the person that made the comment
+story.comments(fields: ':default,person')                                 # Eagerly get comments and the person that made the comment for a story
 ```
 
 ## TODO

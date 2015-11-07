@@ -7,14 +7,14 @@ module TrackerApi
         @client = client
       end
 
-      def get(project_id, id)
-        data = client.get("/projects/#{project_id}/stories/#{id}").body
+      def get(project_id, id, params={})
+        data = client.get("/projects/#{project_id}/stories/#{id}", params: params).body
 
         Resources::Story.new({ client: client, project_id: project_id }.merge(data))
       end
 
-      def get_story(story_id)
-        data = client.get("/stories/#{story_id}").body
+      def get_story(story_id, params={})
+        data = client.get("/stories/#{story_id}", params: params).body
 
         Resources::Story.new({ client: client }.merge(data))
       end
@@ -33,6 +33,14 @@ module TrackerApi
 
       def delete(project_id, id)
         client.delete("/projects/#{project_id}/stories/#{id}").status == 204
+      end
+
+      def update(story, params={})
+        raise ArgumentError, 'Valid story required to update.' unless story.instance_of?(Resources::Story)
+
+        data = client.put("/projects/#{story.project_id}/stories/#{story.id}", params: params).body
+
+        story.attributes = data
       end
     end
   end
