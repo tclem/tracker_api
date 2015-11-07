@@ -25,12 +25,6 @@ module TrackerApi
         Resources::Story.new({ client: client, project_id: project_id }.merge(data))
       end
 
-      def update(project_id, id, params = {})
-        data = client.put("/projects/#{project_id}/stories/#{id}", params: params).body
-
-        Resources::Story.new({ client: client, project_id: project_id }.merge(data))
-      end
-
       def delete(project_id, id)
         client.delete("/projects/#{project_id}/stories/#{id}").status == 204
       end
